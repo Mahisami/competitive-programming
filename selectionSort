@@ -1,0 +1,19 @@
+#User function Template for python3
+
+class Solution: 
+    
+    def selectionSort(self, arr,n):
+       
+        for j in range(n):
+            b = 0
+            m = arr[j]
+            for i in range(j+1, n):
+                if arr[i] < m:
+                    m= arr[i]
+                    a = i
+                    b = 1
+            if b ==1:
+                temp = arr[j]
+                arr[j] = m
+                arr[a] = temp
+       
