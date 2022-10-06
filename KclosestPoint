@@ -1,0 +1,39 @@
+class Solution {
+public:
+    double distance(int x, int y)
+    {
+        double d = sqrt(x*x + y*y);
+        return d;
+    }
+    multimap<double, vector<int>> invert(map<vector<int>, double> m)
+    {
+        multimap<double, vector<int>> inverted;
+        
+        for(auto it=m.begin(); it!= m.end(); ++it)
+            inverted.insert(make_pair(it->second, it->first));
+        
+        return inverted;
+    }
+    vector<vector<int>> kClosest(vector<vector<int>>& points, int K) {
+        
+        map<vector<int>, double> m;
+        
+        vector<vector<int>> res;
+        
+        for(int i=0; i<points.size(); ++i)
+            m[points[i]] = distance(points[i][0], points[i][1]);
+            
+        multimap<double, vector<int>> m2 = invert(m);
+        
+        auto it = m2.begin();
+        
+        while(K > 0  && it!=m2.end())
+        {
+            res.push_back(it->second);
+            K--;
+            it++;
+        }
+        
+        return res;
+    }
+};
