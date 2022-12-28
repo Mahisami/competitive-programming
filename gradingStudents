@@ -1,33 +1,56 @@
-import math
-import os
-import random
-import re
-import sys
+'use strict';
 
+const fs = require('fs');
 
-def grading(grades):
-    res = []
-    for grade in grades:
-        if grade>=38:
-            mod5 = grade % 5   
-            if mod5>=3:
-                grade+= (5-mod5)
-        res.append(grade)
-    return res   
+process.stdin.resume();
+process.stdin.setEncoding('utf-8');
 
-if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+let inputString = '';
+let currentLine = 0;
 
-    grades_count = int(input().strip())
+process.stdin.on('data', function(inputStdin) {
+    inputString += inputStdin;
+});
 
-    gradess = []
+process.stdin.on('end', function() {
+    inputString = inputString.split('\n');
 
-    for _ in range(grades_count):
-        grades_item = int(input().strip())
-        gradess.append(grades_item)
+    main();
+});
 
-    result = grading(gradess)
+function readLine() {
+    return inputString[currentLine++];
+}
 
-    fptr.write('\n'.join(map(str, result)))
-    fptr.write('\n')
-fptr.close()
+/*
+ * Complete the 'gradingStudents' function below.
+ *
+ * The function is expected to return an INTEGER_ARRAY.
+ * The function accepts INTEGER_ARRAY grades as parameter.
+ */
+
+function gradingStudents1(grades){ 
+  let finalGrades = grades.map((grade) => { 
+      return grade >= 38 && grade % 5 >= 3  ? grade - (grade % 5) + 5 : grade;         
+    }); 
+  return finalGrades; 
+ }
+
+function main() {
+    const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
+
+    const gradesCount = parseInt(readLine().trim(), 10);
+
+    let grades = [];
+
+    for (let i = 0; i < gradesCount; i++) {
+        const gradesItem = parseInt(readLine().trim(), 10);
+        grades.push(gradesItem);
+    }
+
+    const result = gradingStudents1(grades);
+
+    ws.write(result.join('\n') + '\n');
+
+    ws.end();
+}
