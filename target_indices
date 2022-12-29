@@ -1,23 +1,15 @@
-class Solution {
-public:
-    vector<int> targetIndices(vector<int>& nums, int target) {
-        int n=nums.size();
-                                                              
-        vector<int> output;
-                                                              
-        sort(nums.begin(),nums.end());
-                                                              
-        for(int i=0;i<n;i++){
-                                                                 
-            if(nums[i]==target){
-                                                                     
-                output.push_back(i);
-                                                                  
-            }
-                                                             
-        }
-                                                              
-        return output;
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var targetIndices = function(nums, target) {
+    var arr=[]
+    let sort=nums.sort((a,b)=>a-b)
+    for (var i=0;i<=sort.length;i++){
+        if(sort[i]==target ){
+            arr.push(i);
         
-    }
+        }
+    }return arr;
 };
