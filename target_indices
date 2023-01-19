@@ -5,7 +5,7 @@
  */
 var targetIndices = function(nums, target) {
     var arr=[]
-    let sort=nums.sort((a,b)=>a-b)
+    let sort=nums.sort()
     for (var i=0;i<=sort.length;i++){
         if(sort[i]==target ){
             arr.push(i);
