@@ -1,8 +1,12 @@
+
 var sortSentence = function(s) {
-  let sorted = [];
-  for (let str of s.split(" ") ) {
-    let index = str[str.length - 1] - 1;
-    sorted[index] = str.slice(0, str.length - 1);
-  }
-  return sorted.join(" ");
+var word=s.split(" ");
+var x=[];
+
+for (let i=0; i<word.length; i++){
+    const y=word[i].slice(-1)-1;
+    x[y]=word[i].slice(0,-1);
+}
+return x.join(" ");
+
 };
