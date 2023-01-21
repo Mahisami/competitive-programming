@@ -1,17 +1,17 @@
-class Solution(object):
-    def isValid(self, s):
-        """
-        :type s: str
-        :rtype: bool
-        """
-        stack=[]
-        sth={")":"(","}":"{","]":"["}
-        for x in s:
-            if x in sth.values():
-                stack.append(x)
-        
-            elif stack and sth[x]==stack[-1]:
-                stack.pop()
-            else:         
-                return False        
-        return stack==[]    
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = function(s) {
+    var string={"(":")","[":"]","{":"}"};
+   var x=[];
+   for(ch of s){
+    if(string[ch]){
+        x.push(string[ch]);
+    }else
+        if(x.pop()!==ch){
+            return false;
+        }
+    }
+   return (!x.length);
+};
