@@ -2,33 +2,26 @@
  * @param {number[]} nums
  * @return {number}
  */
-/**
- * @param {number[]} nums
- * @return {number}
- */
+
 var pivotIndex = function(nums) {
-   if(nums.length==0)return -1;
-   if(nums.length==1)return 1;
-   
-   
-    let total=0;
 
-    for(var i=0;i<nums.length;i++)
-    {
-        total+=nums[i];
+var sum1=0
+var sum2=0
+for(var i=0;i<nums.length;i++){
+    sum1+=nums[i];
+}
+for(var i=0;i<nums.length;i++){
+    if(i===0){
+        
+     sum1-= nums[i];
+     
+     }else{
+         sum2+=nums[i-1];
+         sum1-=nums[i]
+     }
+    if(sum1===sum2)return i
+
     }
-        let sumLeft=0;
-
-        for(var j=0;j<nums.length;j++)
-        {
-            if(j>0)
-            {
-                sumLeft+=nums[j-1];
-            }
-            if (sumLeft*2+nums[j]==total)
-            {
-                return j;
-            }
-        }
-    return -1;
+return -1;
 };
+
